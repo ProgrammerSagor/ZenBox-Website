@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZenBox - Monthly Wellness Subscription</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                light: "#4F46E5",
+                dark: "#7C73E6",
+              },
+              secondary: {
+                light: "#10B981",
+                dark: "#34D399",
+              },
+              accent: {
+                light: "#F59E0B",
+                dark: "#FBBF24",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+        transition: transform 0.3s ease;
+      }
+      .unboxing-video {
+        aspect-ratio: 16 / 9;
+      }
+      @media (max-width: 768px) {
+        .unboxing-video {
+          aspect-ratio: 1 / 1;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Theme Toggle -->
+    <button
+      id="themeToggle"
+      class="fixed top-4 right-10 z-50 p-2 rounded-full bg-white dark:bg-gray-800 shadow-lg"
+    >
+      <i class="fas fa-moon dark:hidden"></i>
+      <i class="fas fa-sun hidden dark:block"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 flex items-center">
+              <i
+                class="fas fa-spa text-2xl text-secondary-light dark:text-secondary-dark mr-2"
+              ></i>
+              <span class="text-xl font-bold">ZenBox</span>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a
+                href="#how-it-works"
+                class="border-primary-light dark:border-primary-dark text-gray-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                >How It Works</a
+              >
+              <a
+                href="#benefits"
+                class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                >Benefits</a
+              >
+              <a
+                href="#pricing"
+                class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                >Pricing</a
+              >
+              <a
+                href="#contents"
+                class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                >What's Inside</a
+              >
+            </div>
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:items-center">
+            <button
+              class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-light dark:text-primary-dark bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+            >
+              Sign In
+            </button>
+            <button
+              class="ml-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 dark:hover:bg-indigo-600"
+            >
+              Subscribe Now
+            </button>
+          </div>
+          <div class="-mr-2 flex items-center sm:hidden">
+            <button
+              id="mobileMenuButton"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="hidden sm:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+      >
+        <div class="pt-2 pb-3 space-y-1">
+          <a
+            href="#how-it-works"
+            class="bg-indigo-50 dark:bg-gray-700 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >How It Works</a
+          >
+          <a
+            href="#benefits"
+            class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >Benefits</a
+          >
+          <a
+            href="#pricing"
+            class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >Pricing</a
+          >
+          <a
+            href="#contents"
+            class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            >What's Inside</a
+          >
+          <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <button
+              class="w-full px-4 py-2 border border-transparent text-base font-medium rounded-md text-primary-light dark:text-primary-dark bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+            >
+              Sign In
+            </button>
+            <button
+              class="w-full mt-2 px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 dark:hover:bg-indigo-600"
+            >
+              Subscribe Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-gradient-to-r from-primary-light to-indigo-600 dark:from-indigo-900 dark:to-indigo-700 text-white py-16 md:py-24"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+          <div
+            class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left"
+          >
+            <h1
+              class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl"
+            >
+              <span class="block">Your Monthly Wellness</span>
+              <span class="block text-secondary-light dark:text-secondary-dark"
+                >Delivered</span
+              >
+            </h1>
+            <p
+              class="mt-3 text-base text-indigo-100 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+            >
+              Curated self-care essentials to nourish your mind, body, and soul.
+              Delivered to your door each month.
+            </p>
+            <div
+              class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0"
+            >
+              <div
+                class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+              >
+                <div class="rounded-md shadow">
+                  <a
+                    href="#pricing"
+                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+                  >
+                    Start Subscription
+                  </a>
+                </div>
+                <div class="mt-3 sm:mt-0 sm:ml-3">
+                  <a
+                    href="#how-it-works"
+                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10"
+                  >
+                    How It Works
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center"
+          >
+            <div
+              class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md hover-scale"
+            >
+              <div
+                class="relative block w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden"
+              >
+                <img
+                  class="w-full"
+                  src="https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                  alt="ZenBox wellness subscription box"
+                />
+                <div class="absolute inset-0 bg-indigo-600 bg-opacity-50"></div>
+                <div class="relative px-8 py-8">
+                  <div
+                    class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg"
+                  >
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0">
+                        <img
+                          class="h-10 w-10 rounded-full"
+                          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                          alt="Happy customer"
+                        />
+                      </div>
+                      <div class="ml-4">
+                        <div
+                          class="text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Sarah K.
+                        </div>
+                        <div class="text-sm text-gray-500 dark:text-gray-300">
+                          Member since 2022
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <p
+                        class="text-sm text-gray-600 dark:text-gray-200 italic"
+                      >
+                        "ZenBox is the self-care ritual I didn't know I needed.
+                        Every month feels like a gift to myself!"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-12 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Simple Process
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            How ZenBox Works
+          </p>
+          <p
+            class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto"
+          >
+            Get your personalized wellness box in just 3 easy steps
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <div class="grid grid-cols-1 gap-10 sm:grid-cols-3">
+            <!-- Step 1 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div
+                class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-light dark:bg-primary-dark text-white mx-auto text-xl font-bold"
+              >
+                1
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                  Choose Your Plan
+                </h3>
+                <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                  Select from our wellness-focused subscription tiers that match
+                  your self-care goals.
+                </p>
+              </div>
+              <div class="mt-6">
+                <div
+                  class="flex items-center justify-center h-12 w-12 rounded-md bg-accent-light dark:bg-accent-dark text-white mx-auto"
+                >
+                  <i class="fas fa-box-open text-xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div
+                class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-light dark:bg-primary-dark text-white mx-auto text-xl font-bold"
+              >
+                2
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                  Customize Your Box
+                </h3>
+                <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                  Tell us your preferences and wellness needs for a personalized
+                  experience.
+                </p>
+              </div>
+              <div class="mt-6">
+                <div
+                  class="flex items-center justify-center h-12 w-12 rounded-md bg-accent-light dark:bg-accent-dark text-white mx-auto"
+                >
+                  <i class="fas fa-sliders-h text-xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div
+                class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-light dark:bg-primary-dark text-white mx-auto text-xl font-bold"
+              >
+                3
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                  Enjoy Monthly Delivery
+                </h3>
+                <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                  Receive your curated wellness box each month, with free
+                  shipping included.
+                </p>
+              </div>
+              <div class="mt-6">
+                <div
+                  class="flex items-center justify-center h-12 w-12 rounded-md bg-accent-light dark:bg-accent-dark text-white mx-auto"
+                >
+                  <i class="fas fa-truck text-xl"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <a
+            href="#pricing"
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 dark:hover:bg-indigo-600"
+          >
+            Choose Your Plan <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-12 bg-gray-50 dark:bg-gray-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Why ZenBox
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            More Than Just Products
+          </p>
+          <p
+            class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto"
+          >
+            We deliver meaningful benefits that enhance your wellbeing
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+            <!-- Benefit 1 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-md bg-secondary-light dark:bg-secondary-dark text-white"
+              >
+                <i class="fas fa-heart text-xl"></i>
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                  Healthier You
+                </h3>
+                <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                  Curated by wellness experts to support physical, mental, and
+                  emotional health with premium natural products.
+                </p>
+              </div>
+              <div class="mt-6">
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Doctor-approved ingredients</span>
+                </div>
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Non-toxic formulations</span>
+                </div>
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Holistic wellness focus</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-md bg-secondary-light dark:bg-secondary-dark text-white"
+              >
+                <i class="fas fa-leaf text-xl"></i>
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                  Eco-Friendly
+                </h3>
+                <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                  Sustainable products with minimal environmental impact and
+                  plastic-free packaging.
+                </p>
+              </div>
+              <div class="mt-6">
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Biodegradable materials</span>
+                </div>
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Carbon-neutral shipping</span>
+                </div>
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Ethically sourced ingredients</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-md bg-secondary-light dark:bg-secondary-dark text-white"
+              >
+                <i class="fas fa-clock text-xl"></i>
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                  Hassle-Free
+                </h3>
+                <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                  Save time and mental energy with products selected just for
+                  you, delivered automatically.
+                </p>
+              </div>
+              <div class="mt-6">
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>No shopping stress</span>
+                </div>
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Easy subscription management</span>
+                </div>
+                <div
+                  class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Skip or cancel anytime</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Community Love
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            What Our Members Say
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Testimonial 1 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <img
+                    class="h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                    alt="Jamie Smith"
+                  />
+                </div>
+                <div class="ml-4">
+                  <div
+                    class="text-lg font-medium text-gray-900 dark:text-white"
+                  >
+                    Jamie L.
+                  </div>
+                  <div class="text-gray-500 dark:text-gray-400">
+                    Member for 8 months
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p class="text-gray-600 dark:text-gray-300 italic">
+                  "I look forward to my ZenBox every month like a kid at
+                  Christmas! The products are always high quality and exactly
+                  what I need."
+                </p>
+              </div>
+              <div class="mt-4 flex items-center">
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <img
+                    class="h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                    alt="Marcus Chen"
+                  />
+                </div>
+                <div class="ml-4">
+                  <div
+                    class="text-lg font-medium text-gray-900 dark:text-white"
+                  >
+                    Marcus T.
+                  </div>
+                  <div class="text-gray-500 dark:text-gray-400">
+                    Member for 1 year
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p class="text-gray-600 dark:text-gray-300 italic">
+                  "As someone new to wellness, ZenBox has been my guide to
+                  better self-care. The variety is amazing and I've discovered
+                  so many products I now swear by."
+                </p>
+              </div>
+              <div class="mt-4 flex items-center">
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <img
+                    class="h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                    alt="Taylor Rodriguez"
+                  />
+                </div>
+                <div class="ml-4">
+                  <div
+                    class="text-lg font-medium text-gray-900 dark:text-white"
+                  >
+                    Taylor M.
+                  </div>
+                  <div class="text-gray-500 dark:text-gray-400">
+                    Member for 2 years
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p class="text-gray-600 dark:text-gray-300 italic">
+                  "The customization options make each box feel personal. I've
+                  tried other subscriptions but ZenBox truly understands
+                  wellness."
+                </p>
+              </div>
+              <div class="mt-4 flex items-center">
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star-half-alt text-yellow-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-gray-500 dark:text-gray-300">
+            Rated 4.9/5 from 1,200+ reviews
+          </p>
+          <div class="mt-2 flex justify-center">
+            <i class="fas fa-star text-yellow-400 mx-1"></i>
+            <i class="fas fa-star text-yellow-400 mx-1"></i>
+            <i class="fas fa-star text-yellow-400 mx-1"></i>
+            <i class="fas fa-star text-yellow-400 mx-1"></i>
+            <i class="fas fa-star text-yellow-400 mx-1"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-12 bg-gray-50 dark:bg-gray-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Subscription Plans
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            Find Your Perfect ZenBox
+          </p>
+          <p
+            class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto"
+          >
+            Flexible options to match your wellness journey
+          </p>
+        </div>
+
+        <div
+          class="mt-10 space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8"
+        >
+          <!-- Essential Plan -->
+          <div
+            class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm divide-y divide-gray-200 dark:divide-gray-600 hover-scale"
+          >
+            <div class="p-6">
+              <h3
+                class="text-lg leading-6 font-medium text-gray-900 dark:text-white"
+              >
+                Essential
+              </h3>
+              <p class="mt-4 text-sm text-gray-500 dark:text-gray-300">
+                For those beginning their wellness journey
+              </p>
+              <div class="mt-8">
+                <p
+                  class="text-4xl font-extrabold text-gray-900 dark:text-white"
+                >
+                  $29
+                </p>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                  per month
+                </p>
+              </div>
+              <button
+                class="mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 dark:hover:bg-indigo-600"
+              >
+                Get Started
+              </button>
+            </div>
+            <div class="pt-6 pb-8 px-6">
+              <h4
+                class="text-xs font-medium text-gray-900 dark:text-white uppercase tracking-wide"
+              >
+                What's included
+              </h4>
+              <ul class="mt-6 space-y-4">
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >4-5 premium wellness products</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Basic customization options</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Free shipping</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Digital wellness guide</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Balance Plan (Featured) -->
+          <div
+            class="bg-white dark:bg-gray-800 border-2 border-primary-light dark:border-primary-dark rounded-lg shadow-lg divide-y divide-gray-200 dark:divide-gray-600 hover-scale"
+          >
+            <div class="p-6">
+              <div class="flex justify-between">
+                <h3
+                  class="text-lg leading-6 font-medium text-gray-900 dark:text-white"
+                >
+                  Balance
+                </h3>
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-light dark:bg-primary-dark text-white"
+                >
+                  Most Popular
+                </span>
+              </div>
+              <p class="mt-4 text-sm text-gray-500 dark:text-gray-300">
+                For holistic mind-body wellness seekers
+              </p>
+              <div class="mt-8">
+                <p
+                  class="text-4xl font-extrabold text-gray-900 dark:text-white"
+                >
+                  $49
+                </p>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                  per month
+                </p>
+              </div>
+              <button
+                class="mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 dark:hover:bg-indigo-600"
+              >
+                Get Started
+              </button>
+            </div>
+            <div class="pt-6 pb-8 px-6">
+              <h4
+                class="text-xs font-medium text-gray-900 dark:text-white uppercase tracking-wide"
+              >
+                What's included
+              </h4>
+              <ul class="mt-6 space-y-4">
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >6-7 premium wellness products</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Advanced customization</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Free shipping</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Premium wellness guide</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Access to member community</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >15% discount on refills</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Premium Plan -->
+          <div
+            class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm divide-y divide-gray-200 dark:divide-gray-600 hover-scale"
+          >
+            <div class="p-6">
+              <h3
+                class="text-lg leading-6 font-medium text-gray-900 dark:text-white"
+              >
+                Premium
+              </h3>
+              <p class="mt-4 text-sm text-gray-500 dark:text-gray-300">
+                For the ultimate wellness experience
+              </p>
+              <div class="mt-8">
+                <p
+                  class="text-4xl font-extrabold text-gray-900 dark:text-white"
+                >
+                  $79
+                </p>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                  per month
+                </p>
+              </div>
+              <button
+                class="mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-white bg-primary-light dark:bg-primary-dark hover:bg-indigo-700 dark:hover:bg-indigo-600"
+              >
+                Get Started
+              </button>
+            </div>
+            <div class="pt-6 pb-8 px-6">
+              <h4
+                class="text-xs font-medium text-gray-900 dark:text-white uppercase tracking-wide"
+              >
+                What's included
+              </h4>
+              <ul class="mt-6 space-y-4">
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >8-9 luxury wellness products</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Full customization</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Free expedited shipping</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Deluxe wellness guide + journal</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >VIP member community</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >20% discount on refills</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                  <span class="text-base text-gray-500 dark:text-gray-300"
+                    >Quarterly surprise gift</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 bg-white dark:bg-gray-800 rounded-lg p-6 text-center">
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+            Need more flexibility?
+          </h3>
+          <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+            We offer gift subscriptions and corporate wellness packages. Contact
+            us for details.
+          </p>
+          <button
+            class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-light dark:text-primary-dark bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >
+            Contact Us <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unboxing Video Section -->
+    <section class="py-12 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Experience ZenBox
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            See What You'll Get
+          </p>
+          <p
+            class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto"
+          >
+            Watch our latest unboxing to see the ZenBox experience
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <div
+            class="bg-gray-900 rounded-xl shadow-xl overflow-hidden unboxing-video hover-scale"
+          >
+            <!-- Video placeholder - replace with actual video embed -->
+            <div
+              class="w-full h-full flex items-center justify-center bg-gradient-to-r from-purple-800 to-indigo-700"
+            >
+              <div class="text-center p-8">
+                <div
+                  class="flex items-center justify-center h-16 w-16 rounded-full bg-white bg-opacity-20 text-white mx-auto mb-4"
+                >
+                  <i class="fas fa-play text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-medium text-white">ZenBox Unboxing</h3>
+                <p class="mt-2 text-indigo-200">
+                  See what's inside our latest wellness box
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="py-12 bg-gray-50 dark:bg-gray-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            As Featured In
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            Trusted By Wellness Enthusiasts
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+            <!-- Brand 1 -->
+            <div
+              class="col-span-1 flex justify-center items-center bg-white dark:bg-gray-800 p-4 rounded-lg h-20 hover-scale"
+            >
+              <span class="text-xl font-bold text-gray-700 dark:text-gray-300"
+                >Wellness+</span
+              >
+            </div>
+            <!-- Brand 2 -->
+            <div
+              class="col-span-1 flex justify-center items-center bg-white dark:bg-gray-800 p-4 rounded-lg h-20 hover-scale"
+            >
+              <span class="text-xl font-bold text-gray-700 dark:text-gray-300"
+                >Mindful</span
+              >
+            </div>
+            <!-- Brand 3 -->
+            <div
+              class="col-span-1 flex justify-center items-center bg-white dark:bg-gray-800 p-4 rounded-lg h-20 hover-scale"
+            >
+              <span class="text-xl font-bold text-gray-700 dark:text-gray-300"
+                >EcoLife</span
+              >
+            </div>
+            <!-- Brand 4 -->
+            <div
+              class="col-span-1 flex justify-center items-center bg-white dark:bg-gray-800 p-4 rounded-lg h-20 hover-scale"
+            >
+              <span class="text-xl font-bold text-gray-700 dark:text-gray-300"
+                >HealthMag</span
+              >
+            </div>
+            <!-- Brand 5 -->
+            <div
+              class="col-span-1 flex justify-center items-center bg-white dark:bg-gray-800 p-4 rounded-lg h-20 hover-scale"
+            >
+              <span class="text-xl font-bold text-gray-700 dark:text-gray-300"
+                >GreenLiving</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <!-- Social Mention 1 -->
+          <div
+            class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+          >
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <i class="fab fa-twitter text-blue-400 text-2xl"></i>
+              </div>
+              <div class="ml-4">
+                <p class="text-gray-600 dark:text-gray-300">
+                  "Just received my @ZenBox and WOW! The quality is exceptional.
+                  That CBD sleep spray is a game changer. #WellnessWin"
+                </p>
+                <div class="mt-4 flex items-center">
+                  <img
+                    class="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                    alt="User avatar"
+                  />
+                  <div class="ml-3">
+                    <div
+                      class="text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Jamie R.
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      @wellnesswithjamie
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Mention 2 -->
+          <div
+            class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+          >
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+              </div>
+              <div class="ml-4">
+                <p class="text-gray-600 dark:text-gray-300">
+                  "Unboxing my ZenBox is my new monthly ritual. The attention to
+                  detail and product curation is next level. Swipe to see what's
+                  inside this month!"
+                </p>
+                <div class="mt-4 flex items-center">
+                  <img
+                    class="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                    alt="User avatar"
+                  />
+                  <div class="ml-3">
+                    <div
+                      class="text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Taylor S.
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      @taylorsselfcare
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Inside Section -->
+    <section id="contents" class="py-12 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Discover
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            What's Inside a ZenBox
+          </p>
+          <p
+            class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto"
+          >
+            Each box is carefully curated with premium wellness products
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <!-- Product 1 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div class="flex items-center justify-center h-32 w-full mb-4">
+                <img
+                  class="h-full object-contain"
+                  src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Essential oils"
+                />
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                Aromatherapy Blends
+              </h3>
+              <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Premium essential oil blends for relaxation, focus, or energy
+              </p>
+              <div class="mt-4">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                >
+                  Most Popular
+                </span>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div class="flex items-center justify-center h-32 w-full mb-4">
+                <img
+                  class="h-full object-contain"
+                  src="https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Herbal tea"
+                />
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                Organic Herbal Teas
+              </h3>
+              <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Small-batch blends for sleep, digestion, or immunity support
+              </p>
+            </div>
+
+            <!-- Product 3 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div class="flex items-center justify-center h-32 w-full mb-4">
+                <img
+                  class="h-full object-contain"
+                  src="https://images.unsplash.com/photo-1597047084897-51e81819a499?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Skincare"
+                />
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                Clean Skincare
+              </h3>
+              <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Natural face masks, serums, or moisturizers for glowing skin
+              </p>
+            </div>
+
+            <!-- Product 4 -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center hover-scale"
+            >
+              <div class="flex items-center justify-center h-32 w-full mb-4">
+                <img
+                  class="h-full object-contain"
+                  src="https://images.unsplash.com/photo-1595341595379-cf0ffab0b6d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Journal"
+                />
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                Wellness Tools
+              </h3>
+              <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Journals, gratitude cards, or mindfulness exercises
+              </p>
+              <div class="mt-4">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                >
+                  New Addition
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+            Plus Seasonal Surprises
+          </h3>
+          <p class="mt-2 text-base text-gray-500 dark:text-gray-300">
+            Each box includes rotating seasonal items like summer sunscreen,
+            winter hand cream, or spring detox supplements. We work with small
+            ethical brands to bring you unique finds you won't get anywhere
+            else.
+          </p>
+          <button
+            class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-light dark:text-primary-dark bg-white dark:bg-gray-600 hover:bg-gray-100 dark:hover:bg-gray-500"
+          >
+            See Past Boxes <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-12 bg-gray-50 dark:bg-gray-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-primary-light dark:text-primary-dark font-semibold tracking-wide uppercase"
+          >
+            Questions
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          >
+            Frequently Asked Questions
+          </p>
+        </div>
+
+        <div class="mt-12">
+          <dl
+            class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12"
+          >
+            <!-- FAQ 1 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <dt class="text-lg font-medium text-gray-900 dark:text-white">
+                How does customization work?
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                After subscribing, you'll complete a wellness profile telling us
+                your preferences, goals, and any allergies. Our algorithm and
+                wellness experts use this to personalize each box. You can
+                update your preferences anytime.
+              </dd>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <dt class="text-lg font-medium text-gray-900 dark:text-white">
+                Can I skip a month?
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Absolutely! You can skip any month with no penalty. Just log
+                into your account and pause your subscription before the billing
+                date. Your next box will ship the following month.
+              </dd>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <dt class="text-lg font-medium text-gray-900 dark:text-white">
+                What's your cancellation policy?
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                You can cancel anytime with just a few clicks. We don't believe
+                in lock-in contracts. If you cancel mid-cycle, you'll receive
+                any remaining boxes you've paid for.
+              </dd>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <dt class="text-lg font-medium text-gray-900 dark:text-white">
+                Do you ship internationally?
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Currently we ship to the US, Canada, UK, and EU countries.
+                International shipping fees may apply outside the US. We're
+                working to expand to more countries soon!
+              </dd>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <dt class="text-lg font-medium text-gray-900 dark:text-white">
+                Are the products full-size or samples?
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Most items are full-size, though we occasionally include deluxe
+                samples of premium products. Our Balance and Premium plans
+                guarantee all full-size products.
+              </dd>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover-scale"
+            >
+              <dt class="text-lg font-medium text-gray-900 dark:text-white">
+                How do refills work?
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 dark:text-gray-300">
+                Found a product you love? Log into your account to order refills
+                at a subscriber discount. We'll even remind you when it's time
+                to reorder your favorites.
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="mt-12 text-center">
+          <p class="text-base text-gray-500 dark:text-gray-300">
+            Still have questions?
+            <a
+              href="#"
+              class="text-primary-light dark:text-primary-dark font-medium"
+              >Contact our support team</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section
+      class="py-16 bg-gradient-to-r from-primary-light to-indigo-600 dark:from-indigo-900 dark:to-indigo-700 text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          Ready to Prioritize Your Wellness?
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-xl sm:mt-4">
+          Join thousands of members experiencing better self-care through ZenBox
+        </p>
+        <div class="mt-8 flex justify-center">
+          <div class="inline-flex rounded-md shadow">
+            <a
+              href="#pricing"
+              class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+            >
+              Subscribe Now
+            </a>
+          </div>
+          <div class="ml-3 inline-flex">
+            <a
+              href="#how-it-works"
+              class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-indigo-100">
+          Cancel anytime. Free shipping on all plans.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+          <div class="space-y-8 lg:col-span-1">
+            <div class="flex items-center">
+              <i
+                class="fas fa-spa text-2xl text-secondary-light dark:text-secondary-dark mr-2"
+              ></i>
+              <span class="text-xl font-bold text-white">ZenBox</span>
+            </div>
+            <p class="text-gray-300 text-base">
+              Monthly wellness delivered to your door. Nourish your mind, body,
+              and soul.
+            </p>
+            <div class="flex space-x-6">
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-pinterest"></i>
+              </a>
+            </div>
+          </div>
+          <div class="mt-12 grid grid-cols-2 gap-8 lg:mt-0 lg:col-span-2">
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Company
+                </h3>
+                <ul class="mt-4 space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Careers
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Press
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-12 md:mt-0">
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Support
+                </h3>
+                <ul class="mt-4 space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Help Center
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Shipping Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Returns
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Legal
+                </h3>
+                <ul class="mt-4 space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Privacy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Terms
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Cookie Policy
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-12 md:mt-0">
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Business
+                </h3>
+                <ul class="mt-4 space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Wholesale
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Affiliates
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-base text-gray-400 hover:text-white"
+                    >
+                      Brand Partners
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 border-t border-gray-700 pt-8">
+          <p class="text-base text-gray-400 text-center">
+            &copy; 2023 ZenBox. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      document
+        .getElementById("mobileMenuButton")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobileMenu");
+          menu.classList.toggle("hidden");
+        });
+
+      // Theme toggle
+      document
+        .getElementById("themeToggle")
+        .addEventListener("click", function () {
+          const html = document.documentElement;
+          if (html.classList.contains("light")) {
+            html.classList.remove("light");
+            html.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          } else {
+            html.classList.remove("dark");
+            html.classList.add("light");
+            localStorage.setItem("theme", "light");
+          }
+        });
+
+      // Check for saved theme preference
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.add("light");
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById("mobileMenu");
+            if (!mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+            }
+          }
+        });
+      });
+
+      // Animation on scroll
+      function animateOnScroll() {
+        const elements = document.querySelectorAll(".hover-scale, .fade-in");
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+
+          if (elementPosition < screenPosition) {
+            element.style.opacity = "1";
+            element.style.transform = "scale(1)";
+          }
+        });
+      }
+
+      // Set initial state for animated elements
+      document.querySelectorAll(".hover-scale, .fade-in").forEach((element) => {
+        element.style.opacity = "0";
+        element.style.transform = "scale(0.95)";
+        element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      });
+
+      // Run once on load
+      animateOnScroll();
+
+      // Run on scroll
+      window.addEventListener("scroll", animateOnScroll);
+    </script>
+  </body>
+</html>
